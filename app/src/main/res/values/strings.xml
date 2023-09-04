@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Login Prof</string>
+
+
+    <string name="login">LOGIN</string>
+    <string name="name">Insira seu primeiro nome</string>
+    <string name="subtitle">INSIRA AS INFORMAÇÕES</string>
+    <string name="email">Insira seu E-mail</string>
+    <string name="password">Insira sua senha</string>
+    <string name="enter">Entrar</string>
+
+</resources>
