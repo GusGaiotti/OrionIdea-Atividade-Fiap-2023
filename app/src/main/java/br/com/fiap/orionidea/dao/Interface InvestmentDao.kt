@@ -22,7 +22,7 @@ interface InvestmentDao {
     @Query("SELECT * FROM tbl_investment WHERE id = :id")
     fun buscarInvestimentoPeloId(id: Int): Investment
 
-    @Query("SELECT * FROM tbl_investment ORDER BY nome ASC")
+    @Query("SELECT * FROM tbl_investment ORDER BY name ASC")
     fun listarInvestimentos(): List<Investment>
 
 }

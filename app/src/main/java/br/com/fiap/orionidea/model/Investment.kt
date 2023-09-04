@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class Investment(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String = "",
-    val valorAplicado: String = "",
-    val taxaDeJuros: Int = 0,
-    val tipo: String = "",
-    val anoVencimento: Int = 0,
-    @ColumnInfo(name = "is_diary") val liqDia: Boolean = false
+    val valueApplied: Double = 0.0,
+    val interest: Double = 0.0,
+    val type: String = "",
+    val endDate: Int = 0,
+    @ColumnInfo(name = "is_diary") val dailyLiq: Boolean = false
 )

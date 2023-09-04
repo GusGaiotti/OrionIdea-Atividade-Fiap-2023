@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -40,23 +39,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.model.Investment
 import br.com.fiap.orionidea.repository.InvestimentoRepository
-
-
-
+import br.com.fiap.orionidea.components.TypeCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FindInvestmentScreen(navController: NavHostController) {
 
     val context = LocalContext.current
-    val investimentoRepository = InvestimentoRepository(context)
+    val investimentRepository = InvestimentoRepository(context)
 
     var searchTextState by remember {
         mutableStateOf("")
     }
 
-    var allInvestments by remember {
-        mutableStateOf(investimentoRepository.listarInvestimentos())
+    val allInvestments by remember {
+        mutableStateOf(investimentRepository.listInvestments())
     }
 
     var filteredInvestments by remember {
@@ -67,162 +64,136 @@ fun FindInvestmentScreen(navController: NavHostController) {
         mutableStateOf<String?>(null)
     }
 
-            Column(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = "Meus investimentos",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
-            )
+    Column(modifier = Modifier.fillMaxSize()) {
+        Text(
+            text = "Meus investimentos",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(16.dp)
+        )
 
-            Row(
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                value = searchTextState,
+                onValueChange = {
+                    searchTextState = it
+                    // Filtra a lista completa de investimentos com base no texto de pesquisa
+                    filteredInvestments = allInvestments.filter { investment ->
+                        investment.name.contains(searchTextState, ignoreCase = true)
+                    }
+                },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = searchTextState,
-                    onValueChange = {
-                        searchTextState = it
+                    .weight(1f),
+                label = {
+                    Text(text = "Buscar Investimento")
+                },
+                trailingIcon = {
+                    IconButton(onClick = {
                         // Filtra a lista completa de investimentos com base no texto de pesquisa
                         filteredInvestments = allInvestments.filter { investment ->
-                            investment.nome.contains(searchTextState, ignoreCase = true)
+                            investment.name.contains(searchTextState, ignoreCase = true)
                         }
-                    },
-                    modifier = Modifier
-                        .weight(1f),
-                    label = {
-                        Text(text = "Buscar Investimento")
-                    },
-                    trailingIcon = {
-                        IconButton(onClick = {
-                            // Filtra a lista completa de investimentos com base no texto de pesquisa
-                            filteredInvestments = allInvestments.filter { investment ->
-                                investment.nome.contains(searchTextState, ignoreCase = true)
-                            }
-                        }) {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = "Search"
-                            )
-                        }
-                    }
-                )
-
-                Spacer(modifier = Modifier.width(16.dp))
-
-                if (selectedType != null) {
-                    OutlinedButton(
-                        onClick = {
-                            // Redefine o estado para a lista completa
-                            selectedType = null
-                            filteredInvestments = allInvestments
-                        },
-                        modifier = Modifier
-                            .heightIn(min = 48.dp), shape = RoundedCornerShape(10.dp),
-                        border = BorderStroke(1.dp, Color.Black)
-                    ) {
-                        Text(text = "LIMPAR FILTRO", fontSize = 11.sp,)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Search"
+                        )
                     }
                 }
-            }
+            )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
-            LazyRow(modifier = Modifier.padding(16.dp)) {
-                items(filteredInvestments.distinctBy { it.tipo }) { investimento ->
-                    val isSelected = selectedType == investimento.tipo
-                    TypeCard(
-                        investimento = investimento,
-                        isSelected = isSelected,
-                        onTypeSelected = { typeName ->
-                            // Define o tipo de investimento selecionado
-                            selectedType = if (isSelected) null else typeName
-                            // Filtra a lista completa de investimentos com base no tipo selecionado
-                            filteredInvestments =
-                                if (isSelected) allInvestments else allInvestments.filter { it.tipo == typeName }
-                        }
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-            ) {
-                items(filteredInvestments) { investimento ->
-                    InvestmentCard(investimento = investimento)
-                }
-            }
-        }
-    }
-
-
-    @Composable
-    fun InvestmentCard(investimento: Investment) {
-        Card(modifier = Modifier.padding(bottom = 8.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Column(
+            if (selectedType != null) {
+                OutlinedButton(
+                    onClick = {
+                        // Redefine o estado para a lista completa
+                        selectedType = null
+                        filteredInvestments = allInvestments
+                    },
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .weight(3f)
+                        .heightIn(min = 48.dp), shape = RoundedCornerShape(10.dp),
+                    border = BorderStroke(1.dp, Color.Black)
                 ) {
-                    Text(
-                        text = investimento.nome,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = investimento.tipo,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
-                    )
+                    Text(text = "LIMPAR FILTRO", fontSize = 11.sp)
                 }
-                Text(
-                    text = investimento.anoVencimento.toString(),
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF4B0082)
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LazyRow(modifier = Modifier.padding(16.dp)) {
+            items(filteredInvestments.distinctBy { it.type }) { investimento ->
+                val isSelected = selectedType == investimento.type
+                TypeCard(
+                    investimento = investimento,
+                    isSelected = isSelected,
+                    onTypeSelected = { typeName ->
+                        selectedType = if (isSelected) null else typeName
+                        filteredInvestments =
+                            if (isSelected) allInvestments else allInvestments.filter { it.type == typeName }
+                    }
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LazyColumn(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+        ) {
+            items(filteredInvestments) { investimento ->
+                InvestmentCard(investimento = investimento)
+            }
+        }
     }
+}
 
 @Composable
-fun TypeCard(investimento: Investment, onTypeSelected: (String) -> Unit, isSelected: Boolean) {
-    OutlinedButton(
-        onClick = {
-            val typeName = investimento.tipo
-            onTypeSelected(typeName)
-        },
-        modifier = Modifier
-            .size(120.dp)
-            .padding(4.dp),
-        shape = RoundedCornerShape(10.dp),
-        border = BorderStroke(1.dp, Color.Black)
-    ) {
-        Text(
-            text = investimento.tipo.toUpperCase(),
-            fontSize = 14.sp,
-            modifier = Modifier.padding(4.dp)
-        )
+fun InvestmentCard(investimento: Investment) {
+    Card(modifier = Modifier.padding(bottom = 8.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .weight(3f)
+            ) {
+                Text(
+                    text = investimento.name,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = investimento.type,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            }
+            Text(
+                text = investimento.endDate.toString(),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF4B0082)
+            )
+        }
     }
-
-    Spacer(modifier = Modifier.width(8.dp)) // Adiciona um espaçamento horizontal entre os botões
 }
 
 

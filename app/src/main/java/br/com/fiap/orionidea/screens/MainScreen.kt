@@ -39,7 +39,7 @@ fun MainScreen(navController: NavHostController) {
                 .padding(15.dp)
         ) {
             Text(
-                text = "Olá Nome, comece a investir!",
+                text = "Olá nome, comece a investir!",
                 color = Color.Black,
                 fontSize = 23.sp,
                 fontFamily = FontFamily(Font(R.font.helvetica_bold)),
@@ -57,13 +57,13 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Seu saldo atual",
+                        text = "Seu saldo",
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 23.sp,
                     )
 
                     Text(
-                        text = "R$ 00,00",
+                        text = "R$ 00.00",
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 23.sp,
                     )
@@ -84,7 +84,7 @@ fun MainScreen(navController: NavHostController) {
                         .height(50.dp)
                         .width(189.dp),
                     shape = RoundedCornerShape(10.dp),
-                    border = BorderStroke(1.dp, Color.Black), // Defina a espessura da borda e a cor da borda aqui
+                    border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
                             text = "CADASTRAR",
@@ -104,7 +104,7 @@ fun MainScreen(navController: NavHostController) {
                         .height(50.dp)
                         .width(189.dp),
                     shape = RoundedCornerShape(10.dp),
-                    border = BorderStroke(1.dp, Color.Black), // Defina a espessura da borda e a cor da borda aqui
+                    border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
                             text = "EXTRATO",
@@ -113,7 +113,8 @@ fun MainScreen(navController: NavHostController) {
                             fontSize = 21.sp,
                         )
                     }
-                )}
+                )
+            }
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,7 +122,7 @@ fun MainScreen(navController: NavHostController) {
                     .padding(5.dp)
             ) {
                 Text(
-                    text = "Últimas notícias do mercado...",
+                    text = "Últimas notícias",
                     modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp),
                     fontFamily = FontFamily(Font(R.font.helvetica_bold)),
                     fontSize = 22.sp,
@@ -149,9 +150,13 @@ fun MainScreen(navController: NavHostController) {
                         fontFamily = FontFamily(Font(R.font.helvetica_bold)),
                         fontSize = 20.sp,
                     )
+
                 }
+
             )
+
         }
     }
 }
+
 

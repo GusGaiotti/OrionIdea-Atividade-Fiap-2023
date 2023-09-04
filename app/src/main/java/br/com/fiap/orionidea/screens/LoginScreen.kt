@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.R
+import br.com.fiap.orionidea.components.ErrorText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +59,7 @@ fun LoginScreen(navController: NavHostController) {
                 .size(64.dp)
         )
         Text(
-            text = stringResource(id = R.string.login),
+            text = "Login",
             fontSize = 32.sp,
             color = Color(android.graphics.Color.parseColor("#6650a4"))
         )
@@ -82,7 +83,7 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    label = { Text(text = stringResource(id = R.string.name)) },
+                    label = { Text(text = "Nome") },
                     isError = nameError,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 )
@@ -98,7 +99,7 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    label = { Text(text = stringResource(id = R.string.email)) },
+                    label = { Text(text = "Email") },
                     isError = emailError,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 )
@@ -112,14 +113,13 @@ fun LoginScreen(navController: NavHostController) {
                         if (password.isNotEmpty()) passwordError = false
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(text = stringResource(id = R.string.password)) },
+                    label = { Text(text = "Senha") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     isError = passwordError,
                     visualTransformation = PasswordVisualTransformation(),
                 )
 
                 ErrorText(passwordError, "A senha deve conter mais de 8 dígitos!")
-
 
             }
         }
@@ -149,24 +149,13 @@ fun LoginScreen(navController: NavHostController) {
             )
         ) {
             Text(
-                text = stringResource(id = R.string.enter),
+                text = "Entrar",
                 modifier = Modifier.fillMaxWidth(),
+                fontSize = 22.sp,
                 textAlign = TextAlign.Center
             )
         }
     }
 }
 
-@Composable
-private fun ErrorText(showError: Boolean, errorMessage: String) {
-    if (showError) {
-        Text(
-            text = errorMessage,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            color = Color.Red,
-            textAlign = TextAlign.End
-        )
-    }
-}
+

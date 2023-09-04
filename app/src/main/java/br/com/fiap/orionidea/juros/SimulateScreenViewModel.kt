@@ -6,47 +6,47 @@ import androidx.lifecycle.ViewModel
 import br.com.fiap.orionidea.calculate.calcularJuros
 import br.com.fiap.orionidea.calculate.calcularMontante
 
-class JurosScreenViewModel: ViewModel() {
+class SimulateScreenViewModel: ViewModel() {
 
-    private val _capital = MutableLiveData<String>()
-    val capitalState: LiveData<String> = _capital
+    private val _value = MutableLiveData<String>()
+    val valueState: LiveData<String> = _value
 
-    private val _taxa = MutableLiveData<String>()
-    val taxaState: LiveData<String> = _taxa
+    private val _rate = MutableLiveData<String>()
+    val rateState: LiveData<String> = _rate
 
-    private val _tempo = MutableLiveData<String>()
-    val tempoState: LiveData<String> = _tempo
+    private val _period = MutableLiveData<String>()
+    val periodState: LiveData<String> = _period
 
-    private val _juros = MutableLiveData<Double>()
-    val jurosState: LiveData<Double> = _juros
+    private val _interest = MutableLiveData<Double>()
+    val interestState: LiveData<Double> = _interest
 
-    private val _montante = MutableLiveData<Double>()
-    val montanteState: LiveData<Double> = _montante
+    private val _amount = MutableLiveData<Double>()
+    val amountState: LiveData<Double> = _amount
 
-    fun onCapitalChanged(novoCapital: String){
-        _capital.value = novoCapital
+    fun onValueChanged(novoCapital: String){
+        _value.value = novoCapital
     }
 
-    fun onTaxaChanged(novaTaxa: String){
-        _taxa.value = novaTaxa
+    fun onRateChanged(novaTaxa: String){
+        _rate.value = novaTaxa
     }
 
-    fun onTempoChanged(novoTempo: String) {
-        _tempo.value = novoTempo
+    fun onPeriodChanged(novoTempo: String) {
+        _period.value = novoTempo
     }
 
-    fun calcularJurosInvestimento(){
-        _juros.value = calcularJuros(
-            capital = _capital.value!!.toDouble(),
-            taxa = _taxa.value!!.toDouble(),
-            tempo = _tempo.value!!.toDouble()
+    fun calculateInvestmentInterest(){
+        _interest.value = calcularJuros(
+            capital = _value.value!!.toDouble(),
+            taxa = _rate.value!!.toDouble(),
+            tempo = _period.value!!.toDouble()
         )
     }
 
-    fun calcularMontanteInvestimento(){
-        _montante.value = calcularMontante(
-            _capital.value!!.toDouble(),
-            _juros.value!!.toDouble()
+    fun calculateAmountInvestment(){
+        _amount.value = calcularMontante(
+            _value.value!!.toDouble(),
+            _interest.value!!.toDouble()
         )
     }
 }

@@ -11,11 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.orionidea.juros.JurosScreenViewModel
+import br.com.fiap.orionidea.juros.SimulateScreenViewModel
 import br.com.fiap.orionidea.screens.AddInvestmentScreen
 import br.com.fiap.orionidea.screens.FindInvestmentScreen
 import br.com.fiap.orionidea.screens.LoginScreen
 import br.com.fiap.orionidea.screens.MainScreen
+import br.com.fiap.orionidea.screens.SimulateInvestmentScreen
 import br.com.fiap.orionidea.ui.theme.OrionIdeaTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,11 +32,15 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "add_investment_screen"
+                        startDestination = "main_screen"
                     ) {
                         composable(route = "login_screen") {LoginScreen(navController)}
-                        composable(route = "main_screen") {MainScreen(navController)       }
-                        composable(route = "add_investment_screen") {AddInvestmentScreen(JurosScreenViewModel(),navController)}
+                        composable(route = "main_screen") {MainScreen(navController)}
+                        composable(route = "simulate_investment_screen") { SimulateInvestmentScreen(
+                            jurosScreenViewModel = SimulateScreenViewModel(),
+                            navController = navController
+                        )}
+                        composable(route = "add_investment_screen") {AddInvestmentScreen(SimulateScreenViewModel(),navController)}
                         composable(route = "find_investment_screen") {FindInvestmentScreen(
                                 navController
                             )
