@@ -24,16 +24,14 @@ fun AddExpertScreen() {
     }
 
     Column {
-        ExpertForm(
-            name = nameState,
+        ExpertForm(name = nameState,
             city = cityState,
             telephone = telephoneState,
             onNameChange = { nameState = it },
             onCityChange = { cityState = it },
-            onTelephoneChange = { telephoneState = it }
-        ) {
+            onTelephoneChange = { telephoneState = it }) {
             listExpertsState = expertRepository.listExperts()
         }
-        }
+    }
 
 }

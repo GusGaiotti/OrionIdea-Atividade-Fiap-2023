@@ -24,10 +24,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import br.com.fiap.orionidea.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -47,7 +49,7 @@ fun GPTChatScreen() {
             .padding(8.dp)
     ) {
         Text(
-            text = "Fale com o Orionbot",
+            text = stringResource(id = R.string.talk_to_orionbot),
             fontSize = 24.sp,
             color = Color(0xFFF186A4),
             fontWeight = FontWeight.Bold,
@@ -56,7 +58,7 @@ fun GPTChatScreen() {
 
         if (isLoading) {
             Text(
-                text = "Pesquisando...",
+                text = stringResource(id = R.string.searching),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -76,14 +78,13 @@ fun GPTChatScreen() {
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
-                        text = "Mensagem do Orionbot:",
+                        text = stringResource(id = R.string.orionbot_message),
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF000000),
                         fontSize = 16.sp
                     )
                     Text(
-                        text = response,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        text = response, modifier = Modifier.padding(vertical = 8.dp)
                     )
                 }
             }
@@ -91,57 +92,41 @@ fun GPTChatScreen() {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .background(
-                    color = Color(0xFF319131),
-                    shape = RoundedCornerShape(16.dp)
-                ),
-            contentAlignment = Alignment.Center,
-            content = {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(
-                        text = "Dica: Experimente perguntar \"O que é CDB?\"",
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                }
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .background(
+                color = Color(0xFF319131), shape = RoundedCornerShape(16.dp)
+            ), contentAlignment = Alignment.Center, content = {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.tip),
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
             }
-        )
+        })
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.Bottom
+            modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.Bottom
         ) {
-            OutlinedTextField(
-                value = question,
-                onValueChange = {
-                    question = it
-                },
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Send,
-                    keyboardType = KeyboardType.Text
-                ),
-                keyboardActions = KeyboardActions(
-                    onSend = {
-                        scope.launch {
-                            isLoading = true
-                            getResponse(question) { result ->
-                                response = result
-                                question = ""
-                                isLoading = false
-                            }
-                        }
+            OutlinedTextField(value = question, onValueChange = {
+                question = it
+            }, keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Send, keyboardType = KeyboardType.Text
+            ), keyboardActions = KeyboardActions(onSend = {
+                scope.launch {
+                    isLoading = true
+                    getResponse(question) { result ->
+                        response = result
+                        question = ""
+                        isLoading = false
                     }
-                ),
-                modifier = Modifier
-                    .weight(1f)
-            )
+                }
+            }), modifier = Modifier.weight(1f))
 
             Spacer(modifier = Modifier.width(16.dp))
 
@@ -155,16 +140,13 @@ fun GPTChatScreen() {
                             isLoading = false
                         }
                     }
-                },
-                modifier = Modifier
-                    .height(IntrinsicSize.Max)
+                }, modifier = Modifier.height(IntrinsicSize.Max)
             ) {
-                Text(text = "Enviar")
+                Text(text = stringResource(id = R.string.send))
             }
         }
     }
 }
-
 
 
 private suspend fun getResponse(question: String, callback: (String) -> Unit) {
@@ -179,12 +161,9 @@ private suspend fun getResponse(question: String, callback: (String) -> Unit) {
         }
     """.trimIndent()
 
-    val request = Request.Builder()
-        .url(url)
-        .addHeader("Content-Type", "application/json")
+    val request = Request.Builder().url(url).addHeader("Content-Type", "application/json")
         .addHeader("Authorization", "Bearer $apiKey")
-        .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
-        .build()
+        .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull())).build()
 
     try {
         val response = withContext(Dispatchers.IO) {
