@@ -32,6 +32,7 @@
     <string name="contact_expert">CONTATE UM ESPECIALISTA</string>
     <string name="find_expert">Buscar Especialista</string>
     <string name="want_to_be_expert">QUERO SER UM ASSESSOR ORION</string>
+    <string name="last_news">ULTIMAS NOTÍCIAS</string>
     <string name="my_investments">Meus investimentos</string>
     <string name="find_investments">Buscar Investimentos</string>
     <string name="clear_filter">Limpar Filtro</string>
@@ -41,6 +42,7 @@
     <string name="investment_type">Tipo do investimento</string>
     <string name="interest_rate">Taxa de juros</string>
     <string name="daily">Resgate diário</string>
+    <string name="hot_topics">FIQUE POR DENTRO</string>
     <string name="what_is_your_city">Qual a sua cidade?</string>
     <string name="what_is_your_contact">Qual o seu contato?</string>
     <string name="submit">ENVIAR PARA APROVAÇÃO</string>

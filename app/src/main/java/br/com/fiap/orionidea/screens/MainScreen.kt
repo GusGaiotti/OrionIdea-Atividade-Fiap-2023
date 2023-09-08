@@ -11,6 +11,8 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -81,41 +83,40 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .padding(vertical = 5.dp)
             ) {
-                OutlinedButton(
-                    onClick = {
-                        navController.navigate("add_investment_screen")
-                    },
+                OutlinedButton(onClick = {
+                    navController.navigate("add_investment_screen")
+                },
                     modifier = Modifier
                         .height(50.dp)
                         .weight(1f)
                         .fillMaxWidth(),
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black),
-                    content = { Row(
-                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.register),
-                            fontFamily = FontFamily(Font(R.font.free_sans)),
-                            color = Color(0xFF1F1F20),
-                            fontSize = 19.sp,
-                        )
-                        Spacer(modifier = Modifier.width(4.dp)) // Adjust the spacing
-                        Image(
-                            imageVector = Icons.Default.Add, // Use your icon here
-                            contentDescription = null
-                        )
-                    }
+                    content = {
+                        Row(
+                            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.register),
+                                fontFamily = FontFamily(Font(R.font.free_sans)),
+                                color = Color(0xFF1F1F20),
+                                fontSize = 19.sp,
+                            )
+                            Spacer(modifier = Modifier.width(4.dp)) // Adjust the spacing
+                            Image(
+                                imageVector = Icons.Default.Add, // Use your icon here
+                                contentDescription = null
+                            )
+                        }
                     })
 
 
                 Spacer(modifier = Modifier.width(15.dp))
-                Spacer(modifier = Modifier.height(150.dp))
+                Spacer(modifier = Modifier.height(60.dp))
 
-                OutlinedButton(
-                    onClick = {
-                        navController.navigate("find_investment_screen")
-                    },
+                OutlinedButton(onClick = {
+                    navController.navigate("find_investment_screen")
+                },
                     modifier = Modifier
                         .height(50.dp)
                         .weight(1f)
@@ -139,9 +140,39 @@ fun MainScreen(navController: NavHostController) {
                                 tint = Color(0xFF1F1F20)
                             )
                         }
-                    })}
+                    })
+            }
 
-                            OutlinedButton(onClick = {
+            OutlinedButton(onClick = {
+                navController.navigate("news_screen")
+            },
+                modifier = Modifier
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(1.dp, Color.Black),
+                content = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.hot_topics),
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1F1F20),
+                            fontSize = 18.sp,
+                        )
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = null,
+                            tint = Color(0xFF1F1F20)
+                        )
+                    }
+                })
+
+            Spacer(modifier = Modifier.height(80.dp))
+
+            OutlinedButton(onClick = {
                 navController.navigate("simulate_investment_screen")
             },
                 modifier = Modifier
@@ -149,22 +180,23 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, Color.Black),
-                content = { Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.simulate_investment),
-                        fontFamily = FontFamily(Font(R.font.free_sans)),
-                        color = Color(0xFF1F1F20),
-                        fontSize = 20.sp,
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Icon(
-                        imageVector = Icons.Default.Info,
-                        contentDescription = null,
-                        tint = Color(0xFF1F1F20)
-                    )
-                }
+                content = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.simulate_investment),
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1F1F20),
+                            fontSize = 20.sp,
+                        )
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = null,
+                            tint = Color(0xFF1F1F20)
+                        )
+                    }
                 })
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -177,22 +209,23 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, Color.Black),
-                content = { Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.questions_bot),
-                        fontFamily = FontFamily(Font(R.font.free_sans)),
-                        color = Color(0xFF1F1F20),
-                        fontSize = 19.sp,
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Icon(
-                        imageVector = Icons.Default.Warning,
-                        contentDescription = null,
-                        tint = Color(0xFF1F1F20)
-                    )
-                }
+                content = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.questions_bot),
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1F1F20),
+                            fontSize = 19.sp,
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Icon(
+                            imageVector = Icons.Default.Warning,
+                            contentDescription = null,
+                            tint = Color(0xFF1F1F20)
+                        )
+                    }
                 })
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -205,25 +238,26 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, Color.Black),
-                content = { Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.contact_expert),
-                        fontFamily = FontFamily(Font(R.font.free_sans)),
-                        color = Color(0xFF1F1F20),
-                        fontSize = 19.sp,
-                    )
-                    Spacer(modifier = Modifier.width(15.dp))
-                    Icon(
-                        imageVector = Icons.Default.Face,
-                        contentDescription = null,
-                        tint = Color(0xFF1F1F20)
-                    )
-                }
+                content = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.contact_expert),
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1F1F20),
+                            fontSize = 19.sp,
+                        )
+                        Spacer(modifier = Modifier.width(15.dp))
+                        Icon(
+                            imageVector = Icons.Default.Face,
+                            contentDescription = null,
+                            tint = Color(0xFF1F1F20)
+                        )
+                    }
                 })
 
-            Spacer(modifier = Modifier.height(120.dp))
+            Spacer(modifier = Modifier.height(95.dp))
 
             OutlinedButton(onClick = {
                 navController.navigate("add_expert_screen")
@@ -233,22 +267,23 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, Color.Black),
-                content = { Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.want_to_be_expert),
-                        fontFamily = FontFamily(Font(R.font.free_sans)),
-                        color = Color(0xFF1F1F20),
-                        fontSize = 18.sp,
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Icon(
-                        imageVector = Icons.Default.ArrowForward,
-                        contentDescription = null,
-                        tint = Color(0xFF1F1F20)
-                    )
-                }
+                content = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.want_to_be_expert),
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1F1F20),
+                            fontSize = 18.sp,
+                        )
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Icon(
+                            imageVector = Icons.Default.ArrowForward,
+                            contentDescription = null,
+                            tint = Color(0xFF1F1F20)
+                        )
+                    }
                 })
         }
     }

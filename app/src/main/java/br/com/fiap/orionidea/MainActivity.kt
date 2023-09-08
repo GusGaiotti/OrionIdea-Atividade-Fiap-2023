@@ -1,6 +1,7 @@
 package br.com.fiap.orionidea
 
 
+import NewsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -58,6 +59,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = "chat_screen") { GPTChatScreen() }
 
                         composable(route = "find_investment_screen") { FindInvestmentScreen() }
+
+                        composable(route = "news_screen") { NewsScreen() }
 
                     }
                 }

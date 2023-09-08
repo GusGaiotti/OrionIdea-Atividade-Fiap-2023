@@ -65,12 +65,18 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     implementation(platform("androidx.compose:compose-bom:2022.10.00"))
     implementation("androidx.room:room-runtime:2.5.2")
     kapt("androidx.room:room-compiler:2.5.2")
 
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation ("io.coil-kt:coil-compose:1.4.0")
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
