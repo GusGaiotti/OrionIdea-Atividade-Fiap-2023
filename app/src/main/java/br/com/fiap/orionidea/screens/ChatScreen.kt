@@ -1,7 +1,6 @@
 package br.com.fiap.orionidea.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,28 +15,110 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.navigation.NavHostController
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 private val client = OkHttpClient()
 
-    @Composable
-    fun GPTChatScreen(navController: NavHostController) {
-        val scope = rememberCoroutineScope()
-        var question by remember { mutableStateOf("") }
-        var response by remember { mutableStateOf("") }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GPTChatScreen() {
+    val scope = rememberCoroutineScope()
+    var question by remember { mutableStateOf("") }
+    var response by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
 
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp)
+    ) {
+        Text(
+            text = "Fale com o Orionbot",
+            fontSize = 24.sp,
+            color = Color(0xFFF186A4),
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        if (isLoading) {
+            Text(
+                text = "Pesquisando...",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        if (response.isNotEmpty()) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Text(
+                        text = "Mensagem do Orionbot:",
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF000000),
+                        fontSize = 16.sp
+                    )
+                    Text(
+                        text = response,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(8.dp)
+                .background(
+                    color = Color(0xFF319131),
+                    shape = RoundedCornerShape(16.dp)
+                ),
+            contentAlignment = Alignment.Center,
+            content = {
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Text(
+                        text = "Dica: Experimente perguntar \"O que é CDB?\"",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Bottom
         ) {
-            BasicTextField(
+            OutlinedTextField(
                 value = question,
                 onValueChange = {
                     question = it
@@ -49,38 +130,42 @@ private val client = OkHttpClient()
                 keyboardActions = KeyboardActions(
                     onSend = {
                         scope.launch {
+                            isLoading = true
                             getResponse(question) { result ->
                                 response = result
+                                question = ""
+                                isLoading = false
                             }
                         }
                     }
                 ),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .weight(1f)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Button(
                 onClick = {
                     scope.launch {
+                        isLoading = true
                         getResponse(question) { result ->
                             response = result
+                            question = ""
+                            isLoading = false
                         }
                     }
                 },
-                modifier = Modifier.align(Alignment.End)
+                modifier = Modifier
+                    .height(IntrinsicSize.Max)
             ) {
                 Text(text = "Enviar")
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = response,
-                modifier = Modifier.fillMaxWidth()
-            )
         }
     }
+}
+
+
 
 private suspend fun getResponse(question: String, callback: (String) -> Unit) {
     val apiKey = "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"

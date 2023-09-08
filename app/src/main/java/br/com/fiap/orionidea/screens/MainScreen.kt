@@ -8,16 +8,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.R
+import br.com.fiap.orionidea.repository.InvestimentoRepository
 
 
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val context = LocalContext.current
+    val investimentRepository = InvestimentoRepository(context)
+    val sumValue = investimentRepository.sumValueApplied()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,13 +58,15 @@ fun MainScreen(navController: NavHostController) {
                     )
 
                     Text(
-                        text = "R$ 00.00",
+                        text = "R$ $sumValue",
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 23.sp,
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(150.dp))
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -110,7 +118,7 @@ fun MainScreen(navController: NavHostController) {
 
             OutlinedButton(
                 onClick = {
-                    //navController.navigate("find_investment_screen")
+                    navController.navigate("chat_screen")
                 },
                 modifier = Modifier
                     .height(50.dp)
@@ -130,7 +138,7 @@ fun MainScreen(navController: NavHostController) {
 
             OutlinedButton(
                 onClick = {
-                    //navController.navigate("find_investment_screen")
+                    navController.navigate("contact_expert_screen")
                 },
                 modifier = Modifier
                     .height(50.dp)
@@ -143,6 +151,27 @@ fun MainScreen(navController: NavHostController) {
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         color = Color(0xFF8B0000),
                         fontSize = 22.sp,
+                    )
+                }
+            )
+
+            Spacer(modifier = Modifier.height(60.dp))
+
+            OutlinedButton(
+                onClick = {
+                    navController.navigate("add_expert_screen")
+                },
+                modifier = Modifier
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(1.dp, Color.Black),
+                content = {
+                    Text(
+                        text = "QUERO SER UM ASSESSOR ORION",
+                        fontFamily = FontFamily(Font(R.font.free_sans)),
+                        color = Color(0xFFCF461A),
+                        fontSize = 19.sp,
                     )
                 }
             )

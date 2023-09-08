@@ -25,5 +25,8 @@ class InvestimentoRepository(context: Context) {
         return db.listarInvestimentos()
     }
 
+    fun sumValueApplied(): Double {
+        return db.sumValueApplied()
+    }
 }
 

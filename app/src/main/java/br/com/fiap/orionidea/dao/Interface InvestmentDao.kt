@@ -25,4 +25,6 @@ interface InvestmentDao {
     @Query("SELECT * FROM tbl_investment ORDER BY name ASC")
     fun listarInvestimentos(): List<Investment>
 
+    @Query("SELECT SUM(valueApplied) FROM tbl_investment")
+    fun sumValueApplied(): Double
 }

@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.fiap.orionidea.model.Expert
-import br.com.fiap.orionidea.screens.ExpertCard
 
 @Composable
 fun ExpertList(experts: List<Expert>, atualizar: () -> Unit) {

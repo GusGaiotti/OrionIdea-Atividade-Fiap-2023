@@ -25,34 +25,42 @@ import br.com.fiap.orionidea.ui.theme.OrionIdeaTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             OrionIdeaTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     val navController = rememberNavController()
+
                     NavHost(
                         navController = navController,
-                        startDestination = "add_expert_screen"
+                        startDestination = "main_screen"
                     ) {
-                        composable(route = "login_screen") {LoginScreen(navController)}
-                        composable(route = "main_screen") {MainScreen(navController)}
-                        composable(route = "simulate_investment_screen") { SimulateInvestmentScreen(
-                            jurosScreenViewModel = SimulateScreenViewModel(),
-                            navController = navController
-                        )}
-                        composable(route = "add_investment_screen") {AddInvestmentScreen(SimulateScreenViewModel(),navController)}
-                        composable(route = "add_expert_screen") {AddExpertScreen(navController)}
-                        composable(route = "contact_expert_screen") { ContactExpertScreen(navController) }
-                        composable(route = "chat_screen") { GPTChatScreen(navController) }
-                        composable(route = "find_investment_screen") {FindInvestmentScreen(
-                                navController
+
+                        composable(route = "login_screen") { LoginScreen(navController) }
+
+                        composable(route = "main_screen") { MainScreen(navController) }
+
+                        composable(route = "simulate_investment_screen") {SimulateInvestmentScreen(
+                                SimulateScreenViewModel()
                             )
                         }
-                    }
 
+                        composable(route = "add_investment_screen") {AddInvestmentScreen()}
+
+                        composable(route = "add_expert_screen") {AddExpertScreen()}
+
+                        composable(route = "contact_expert_screen") {ContactExpertScreen()}
+
+                        composable(route = "chat_screen") {GPTChatScreen()}
+
+                        composable(route = "find_investment_screen") {FindInvestmentScreen()}
+
+                    }
                 }
             }
         }

@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,33 +35,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import br.com.fiap.orionidea.model.Investment
+import br.com.fiap.orionidea.components.FindInvestmentCard
 import br.com.fiap.orionidea.repository.InvestimentoRepository
 import br.com.fiap.orionidea.components.TypeCard
 
+
+
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FindInvestmentScreen(navController: NavHostController) {
-
+fun FindInvestmentScreen() {
     val context = LocalContext.current
     val investimentRepository = InvestimentoRepository(context)
 
-    var searchTextState by remember {
-        mutableStateOf("")
-    }
-
-    val allInvestments by remember {
-        mutableStateOf(investimentRepository.listInvestments())
-    }
-
-    var filteredInvestments by remember {
-        mutableStateOf(allInvestments)
-    }
-
-    var selectedType by remember {
-        mutableStateOf<String?>(null)
-    }
+    var searchTextState by remember { mutableStateOf("") }
+    val allInvestments by remember { mutableStateOf(investimentRepository.listInvestments()) }
+    var filteredInvestments by remember { mutableStateOf(allInvestments) }
+    var selectedType by remember { mutableStateOf<String?>(null) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
@@ -73,9 +63,7 @@ fun FindInvestmentScreen(navController: NavHostController) {
         )
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -88,11 +76,8 @@ fun FindInvestmentScreen(navController: NavHostController) {
                         investment.name.contains(searchTextState, ignoreCase = true)
                     }
                 },
-                modifier = Modifier
-                    .weight(1f),
-                label = {
-                    Text(text = "Buscar Investimento")
-                },
+                modifier = Modifier.weight(1f),
+                label = { Text(text = "Buscar Investimento") },
                 trailingIcon = {
                     IconButton(onClick = {
                         // Filtra a lista completa de investimentos com base no texto de pesquisa
@@ -117,8 +102,8 @@ fun FindInvestmentScreen(navController: NavHostController) {
                         selectedType = null
                         filteredInvestments = allInvestments
                     },
-                    modifier = Modifier
-                        .heightIn(min = 48.dp), shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier.heightIn(min = 48.dp),
+                    shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black)
                 ) {
                     Text(text = "LIMPAR FILTRO", fontSize = 11.sp)
@@ -144,56 +129,13 @@ fun FindInvestmentScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
+            modifier = Modifier.weight(1f).fillMaxWidth()
         ) {
             items(filteredInvestments) { investimento ->
-                InvestmentCard(investimento = investimento)
+                FindInvestmentCard(investimento = investimento)
             }
         }
     }
 }
-
-@Composable
-fun InvestmentCard(investimento: Investment) {
-    Card(modifier = Modifier.padding(bottom = 8.dp)) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .weight(3f)
-            ) {
-                Text(
-                    text = investimento.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = investimento.type,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            }
-            Text(
-                text = investimento.endDate.toString(),
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF4B0082)
-            )
-        }
-    }
-}
-
-
 
 

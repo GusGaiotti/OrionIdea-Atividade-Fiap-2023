@@ -20,38 +20,19 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import br.com.fiap.orionidea.components.CaixaDeEntrada
 import br.com.fiap.orionidea.components.CardResultado
 import br.com.fiap.orionidea.juros.SimulateScreenViewModel
 
 @Composable
 fun SimulateInvestmentScreen(
-    jurosScreenViewModel: SimulateScreenViewModel,
-    navController: NavController
+    jurosScreenViewModel: SimulateScreenViewModel
 ) {
-
-    val value by jurosScreenViewModel
-        .valueState
-        .observeAsState(initial = "")
-
-
-    val rate by jurosScreenViewModel
-        .rateState
-        .observeAsState(initial = "")
-
-
-    val period by jurosScreenViewModel
-        .periodState
-        .observeAsState(initial = "")
-
-    val interest by jurosScreenViewModel
-        .interestState
-        .observeAsState(initial = 0.0)
-
-    val amount by jurosScreenViewModel
-        .amountState
-        .observeAsState(initial = 0.0)
+    val value by jurosScreenViewModel.valueState.observeAsState(initial = "")
+    val rate by jurosScreenViewModel.rateState.observeAsState(initial = "")
+    val period by jurosScreenViewModel.periodState.observeAsState(initial = "")
+    val interest by jurosScreenViewModel.interestState.observeAsState(initial = 0.0)
+    val amount by jurosScreenViewModel.amountState.observeAsState(initial = 0.0)
 
     Box(
         modifier = Modifier.padding(16.dp),
@@ -68,8 +49,7 @@ fun SimulateInvestmentScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
             Card(
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(

@@ -21,8 +21,8 @@ import java.util.Locale
 fun TypeExpertCard(expert: Expert, onTypeSelected: (String) -> Unit) {
     OutlinedButton(
         onClick = {
-            val typeName = expert.name
-            onTypeSelected(typeName)
+            val typeCity = expert.city
+            onTypeSelected(typeCity)
         },
         modifier = Modifier
             .size(120.dp)
@@ -31,7 +31,7 @@ fun TypeExpertCard(expert: Expert, onTypeSelected: (String) -> Unit) {
         border = BorderStroke(1.dp, Color.Black)
     ) {
         Text(
-            text = expert.name.uppercase(Locale.ROOT),
+            text = expert.city.uppercase(Locale.ROOT),
             fontSize = 14.sp,
             modifier = Modifier.padding(4.dp)
         )

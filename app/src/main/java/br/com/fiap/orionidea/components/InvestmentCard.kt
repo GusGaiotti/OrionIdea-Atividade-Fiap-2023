@@ -62,7 +62,7 @@ fun InvestmentCard(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Taxa de juros: ${investment.interest}",
+                    text = if (investment.interest > 0) "Taxa de juros: ${investment.interest}" else "Taxa de juros: Não há",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )

@@ -13,7 +13,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,38 +30,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import br.com.fiap.orionidea.components.ExpertCard
 import br.com.fiap.orionidea.components.TypeExpertCard
-import br.com.fiap.orionidea.model.Expert
 import br.com.fiap.orionidea.repository.ExpertRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContactExpertScreen(navController: NavHostController) {
-
+fun ContactExpertScreen() {
     val context = LocalContext.current
     val expertRepository = ExpertRepository(context)
 
-    var searchTextState by remember {
-        mutableStateOf("")
-    }
-
-    val allExperts by remember {
-        mutableStateOf(expertRepository.listExperts())
-    }
-
-    var filteredExperts by remember {
-        mutableStateOf(allExperts)
-    }
-
-    var selectedType by remember {
-        mutableStateOf<String?>(null)
-    }
+    var searchTextState by remember { mutableStateOf("") }
+    val allExperts by remember { mutableStateOf(expertRepository.listExperts()) }
+    var filteredExperts by remember { mutableStateOf(allExperts) }
+    var selectedType by remember { mutableStateOf<String?>(null) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Especialistas",
+            text = "Contate um especialista",
             fontSize = 24.sp,
+            color = Color(0xFFCC4A0D),
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(16.dp)
         )
@@ -82,8 +69,7 @@ fun ContactExpertScreen(navController: NavHostController) {
                         expert.name.contains(searchTextState, ignoreCase = true)
                     }
                 },
-                modifier = Modifier
-                    .weight(1f),
+                modifier = Modifier.weight(1f),
                 label = {
                     Text(text = "Buscar Especialista")
                 },
@@ -105,7 +91,7 @@ fun ContactExpertScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyRow(modifier = Modifier.padding(16.dp)) {
-            items(filteredExperts.distinctBy { it.name}) { expert ->
+            items(filteredExperts.distinctBy { it.name }) { expert ->
                 val isSelected = selectedType == expert.name
                 TypeExpertCard(
                     expert = expert
@@ -130,47 +116,5 @@ fun ContactExpertScreen(navController: NavHostController) {
         }
     }
 }
-
-
-@Composable
-fun ExpertCard(expert: Expert) {
-    Card(modifier = Modifier.padding(bottom = 8.dp)) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .weight(3f)
-            ) {
-                Text(
-                    text = expert.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = expert.city,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            }
-            Text(
-                text = expert.telephone.toString(),
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF4B0082)
-            )
-        }
-    }
-}
-
-
 
 
