@@ -26,9 +26,9 @@
     <string name="your_balance">Seu saldo</string>
     <string name="new_investment">Cadastro de investimentos</string>
     <string name="register">CADASTRAR</string>
-    <string name="register_investment">CADASTRAR INVESTIMENTO</string>
-    <string name="extract">EXTRATO DE MOVIMENTAÇÃO</string>
+    <string name="extract">EXTRATO</string>
     <string name="questions_bot">TIRE SUAS DÚVIDAS COM O BOT</string>
+    <string name="simulate_investment">SIMULE UM INVESTIMENTO</string>
     <string name="contact_expert">CONTATE UM ESPECIALISTA</string>
     <string name="find_expert">Buscar Especialista</string>
     <string name="want_to_be_expert">QUERO SER UM ASSESSOR ORION</string>
