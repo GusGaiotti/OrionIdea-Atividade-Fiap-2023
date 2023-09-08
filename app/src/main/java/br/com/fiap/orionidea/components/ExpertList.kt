@@ -10,18 +10,19 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.fiap.orionidea.model.Investment
+import br.com.fiap.orionidea.model.Expert
+import br.com.fiap.orionidea.screens.ExpertCard
 
 @Composable
-fun InvestmentList(investments: List<Investment>, atualizar: () -> Unit) {
+fun ExpertList(experts: List<Expert>, atualizar: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        for (investment in investments) {
-            InvestmentCard(investment, atualizar)
+        for (expert  in experts) {
+            ExpertCard(expert)
             Spacer(modifier = Modifier.height(4.dp))
         }
     }

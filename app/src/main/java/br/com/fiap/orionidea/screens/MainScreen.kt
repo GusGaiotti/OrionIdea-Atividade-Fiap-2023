@@ -1,23 +1,11 @@
 package br.com.fiap.orionidea.screens
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
@@ -26,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.R
+
 
 @Composable
 fun MainScreen(navController: NavHostController) {
@@ -69,12 +58,12 @@ fun MainScreen(navController: NavHostController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(5.dp))
-            Row(
+            Spacer(modifier = Modifier.height(150.dp))
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 5.dp),
-                horizontalArrangement = Arrangement.Center
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 OutlinedButton(
                     onClick = {
@@ -82,59 +71,43 @@ fun MainScreen(navController: NavHostController) {
                     },
                     modifier = Modifier
                         .height(50.dp)
-                        .width(189.dp),
+                        .fillMaxWidth(),
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
-                            text = "CADASTRAR",
-                            fontFamily = FontFamily(Font(R.font.helvetica_bold)),
-                            color = Color(0xFFFFA500),
-                            fontSize = 21.sp,
+                            text = "CADASTRAR INVESTIMENTO",
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
+                            color = Color(0xFF1B4CC5),
+                            fontSize = 22.sp,
                         )
                     }
                 )
 
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.height(15.dp))
+
                 OutlinedButton(
                     onClick = {
                         navController.navigate("find_investment_screen")
                     },
                     modifier = Modifier
                         .height(50.dp)
-                        .width(189.dp),
+                        .fillMaxWidth(),
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
-                            text = "EXTRATO",
-                            fontFamily = FontFamily(Font(R.font.helvetica_bold)),
+                            text = "EXTRATO DE MOVIMENTAÇÃO",
+                            fontFamily = FontFamily(Font(R.font.free_sans)),
                             color = Color(0xFF008000),
-                            fontSize = 21.sp,
+                            fontSize = 22.sp,
                         )
                     }
                 )
             }
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(410.dp)
-                    .padding(5.dp)
-            ) {
-                Text(
-                    text = "Últimas notícias",
-                    modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp),
-                    fontFamily = FontFamily(Font(R.font.helvetica_bold)),
-                    fontSize = 22.sp,
-                )
-                Divider(
-                    color = Color.Black,
-                    thickness = 1.dp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-            Spacer(modifier = Modifier.height(8.dp))
+
+            Spacer(modifier = Modifier.height(15.dp))
+
             OutlinedButton(
                 onClick = {
                     //navController.navigate("find_investment_screen")
@@ -146,17 +119,33 @@ fun MainScreen(navController: NavHostController) {
                 border = BorderStroke(1.dp, Color.Black),
                 content = {
                     Text(
-                        text = "QUERO APRENDER A INVESTIR",
-                        fontFamily = FontFamily(Font(R.font.helvetica_bold)),
+                        text = "TIRE SUAS DÚVIDAS COM O BOT",
+                        fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 20.sp,
                     )
-
                 }
-
             )
 
+            Spacer(modifier = Modifier.height(15.dp))
+
+            OutlinedButton(
+                onClick = {
+                    //navController.navigate("find_investment_screen")
+                },
+                modifier = Modifier
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(1.dp, Color.Black),
+                content = {
+                    Text(
+                        text = "CONTATE UM ASSESSOR",
+                        fontFamily = FontFamily(Font(R.font.free_sans)),
+                        color = Color(0xFF8B0000),
+                        fontSize = 22.sp,
+                    )
+                }
+            )
         }
     }
 }
-
-

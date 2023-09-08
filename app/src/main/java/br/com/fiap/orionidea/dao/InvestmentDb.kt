@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import br.com.fiap.orionidea.model.Expert
 import br.com.fiap.orionidea.model.Investment
 
-@Database(entities = [Investment::class], version = 1)
+@Database(entities = [Investment::class, Expert::class], version = 1)
 abstract class InvestmentDb : RoomDatabase() {
 
     abstract fun investmentDao(): InvestmentDao
+    abstract fun expertDao(): ExpertDao
 
     companion object {
 

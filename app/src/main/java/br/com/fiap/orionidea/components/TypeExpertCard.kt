@@ -13,14 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.fiap.orionidea.model.Expert
 import br.com.fiap.orionidea.model.Investment
 import java.util.Locale
 
 @Composable
-fun TypeCard(investimento: Investment, onTypeSelected: (String) -> Unit) {
+fun TypeExpertCard(expert: Expert, onTypeSelected: (String) -> Unit) {
     OutlinedButton(
         onClick = {
-            val typeName = investimento.type
+            val typeName = expert.name
             onTypeSelected(typeName)
         },
         modifier = Modifier
@@ -30,7 +31,7 @@ fun TypeCard(investimento: Investment, onTypeSelected: (String) -> Unit) {
         border = BorderStroke(1.dp, Color.Black)
     ) {
         Text(
-            text = investimento.type.uppercase(Locale.ROOT),
+            text = expert.name.uppercase(Locale.ROOT),
             fontSize = 14.sp,
             modifier = Modifier.padding(4.dp)
         )

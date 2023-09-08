@@ -63,6 +63,9 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.navigation:navigation-compose:2.7.1")
     implementation("androidx.compose.runtime:runtime-livedata:1.4.3")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Dependências específicas do módulo 1
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
