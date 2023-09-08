@@ -11,19 +11,19 @@ import br.com.fiap.orionidea.model.Investment
 interface InvestmentDao {
 
     @Insert
-    fun salvar(investment: Investment): Long
+    fun save(investment: Investment): Long
 
     @Update
-    fun atualizar(investment: Investment): Int
+    fun update(investment: Investment): Int
 
     @Delete
-    fun excluir(investment: Investment): Int
+    fun delete(investment: Investment): Int
 
     @Query("SELECT * FROM tbl_investment WHERE id = :id")
-    fun buscarInvestimentoPeloId(id: Int): Investment
+    fun findInvestimentoById(id: Int): Investment
 
     @Query("SELECT * FROM tbl_investment ORDER BY name ASC")
-    fun listarInvestimentos(): List<Investment>
+    fun listInvestiments(): List<Investment>
 
     @Query("SELECT SUM(valueApplied) FROM tbl_investment")
     fun sumValueApplied(): Double

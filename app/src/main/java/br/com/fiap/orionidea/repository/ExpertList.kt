@@ -11,19 +11,19 @@ class ExpertRepository(context: Context) {
     private val db = InvestmentDb.getDatabase(context).expertDao()
 
     fun save(expert: Expert): Long {
-        return db.salvar(expert)
+        return db.save(expert)
     }
 
-    fun update  (expert: Expert): Int {
-        return db.atualizar(expert)
+    fun update(expert: Expert): Int {
+        return db.update(expert)
     }
 
     fun delete(expert: Expert): Int {
-        return db.excluir(expert)
+        return db.delete(expert)
     }
 
     fun listExperts(): List<Expert> {
-        return db.listarExperts()
+        return db.listExperts()
     }
 
 }

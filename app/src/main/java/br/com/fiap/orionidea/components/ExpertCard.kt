@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.model.Expert
@@ -23,30 +22,25 @@ fun ExpertCard(expert: Expert) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .weight(2f) // Adjusted the weight
+                    .weight(2f)
             ) {
                 Text(
-                    text = expert.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    text = expert.name, fontSize = 20.sp, fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = expert.city,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
+                    text = expert.city, fontSize = 14.sp, fontWeight = FontWeight.Normal
                 )
             }
             Text(
                 text = "+55 " + expert.telephone.toString(),
                 modifier = Modifier
-                    .weight(2f) // Adjusted the weight
+                    .weight(2f)
                     .fillMaxWidth(),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,

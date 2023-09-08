@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import br.com.fiap.orionidea.repository.InvestimentoRepository
+import br.com.fiap.orionidea.repository.InvestimentRepository
 import br.com.fiap.orionidea.components.InvestmentList
 import br.com.fiap.orionidea.components.InvestmentForm
 
@@ -15,7 +15,7 @@ import br.com.fiap.orionidea.components.InvestmentForm
 @Composable
 fun AddInvestmentScreen() {
     val context = LocalContext.current
-    val investmentRepository = InvestimentoRepository(context)
+    val investmentRepository = InvestimentRepository(context)
 
     var nameState by remember { mutableStateOf("") }
     var valueState by remember { mutableStateOf("") }

@@ -1,5 +1,6 @@
 package br.com.fiap.orionidea.components
 
+import android.provider.Telephony.Mms.Inbox
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -13,7 +14,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CaixaDeEntrada(
+fun Inbox(
     value: String,
     placeholder: String,
     label: String,
@@ -21,20 +22,14 @@ fun CaixaDeEntrada(
     keyboardType: KeyboardType,
     atualizarValor: (String) -> Unit
 ) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = {
-            atualizarValor(it)
-        },
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp),
-        placeholder = {
-            Text(text = placeholder)
-        },
-        label = {
-            Text(text = label)
-        },
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
+    OutlinedTextField(value = value, onValueChange = {
+        atualizarValor(it)
+    }, modifier = modifier
+        .fillMaxWidth()
+        .padding(top = 16.dp), placeholder = {
+        Text(text = placeholder)
+    }, label = {
+        Text(text = label)
+    }, keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
     )
 }

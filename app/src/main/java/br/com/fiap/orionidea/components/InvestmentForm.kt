@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -40,7 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.model.Investment
-import br.com.fiap.orionidea.repository.InvestimentoRepository
+import br.com.fiap.orionidea.repository.InvestimentRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +59,7 @@ fun InvestmentForm(
     atualizar: () -> Unit
 ) {
     val context = LocalContext.current
-    val investimentoRepository = InvestimentoRepository(context)
+    val investimentoRepository = InvestimentRepository(context)
 
     var showError by remember { mutableStateOf(false) }
 
@@ -74,22 +75,20 @@ fun InvestmentForm(
         modifier = Modifier.padding(16.dp)
     ) {
         Text(
-            text = "Cadastro de investimentos",
+            text = stringResource(id = R.string.new_investment),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF4B0082)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = name,
+        OutlinedTextField(value = name,
             onValueChange = { onNameChange(it) },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text(text = "Nome do investimento")
+                Text(text = stringResource(id = R.string.investment_name))
             },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                capitalization = KeyboardCapitalization.Words
+                keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Words
             ),
             singleLine = true
         )
@@ -99,59 +98,48 @@ fun InvestmentForm(
             onValueChange = { onValueChange(it) },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text(text = "Valor do investimento")
+                Text(text = stringResource(id = R.string.investment_value))
             },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
+                keyboardType = KeyboardType.Number, imeAction = ImeAction.Next
             ),
             singleLine = true
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
-            OutlinedTextField(
-                value = type,
-                onValueChange = {onTypeChange (it)},
+            OutlinedTextField(value = type,
+                onValueChange = { onTypeChange(it) },
                 modifier = Modifier.weight(1f),
                 label = {
-                    Text(text = "Tipo do investimento")
+                    Text(text = stringResource(id = R.string.investment_type))
                 },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text),
                 singleLine = true,
                 readOnly = true,
                 trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
+                    Icon(imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null,
                         modifier = Modifier.clickable {
                             expanded = true
-                        }
-                    )
-                }
-            )
+                        })
+                })
         }
 
 
         DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = {
+            expanded = expanded, onDismissRequest = {
                 expanded = false
-            },
-            modifier = Modifier.fillMaxWidth()
+            }, modifier = Modifier.fillMaxWidth()
         ) {
             investmentTypes.forEach { typeOption ->
-                DropdownMenuItem(
-                    text = { Text(typeOption) },
-                    onClick = {
-                        selectedType = typeOption
-                        onTypeChange(typeOption)
-                        expanded = false
-                    }
-                )
+                DropdownMenuItem(text = { Text(typeOption) }, onClick = {
+                    selectedType = typeOption
+                    onTypeChange(typeOption)
+                    expanded = false
+                })
             }
         }
 
@@ -163,21 +151,19 @@ fun InvestmentForm(
                 onValueChange = { onInterestChange(it) },
                 modifier = Modifier.fillMaxWidth(),
                 label = {
-                    Text(text = "Taxa de juros")
+                    Text(text = stringResource(id = R.string.interest_rate))
                 },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number,
-                    imeAction = ImeAction.Done
+                    keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
                 ),
                 singleLine = true
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
             ) {
                 Checkbox(checked = dailyLiq, onCheckedChange = { onAmigoChange(it) })
-                Text(text = "Resgate diário")
+                Text(text = stringResource(id = R.string.daily))
             }
         } else {
             onInterestChange("0")
@@ -216,7 +202,7 @@ fun InvestmentForm(
             border = BorderStroke(1.dp, Color.Black),
         ) {
             Text(
-                text = "CADASTRAR",
+                text = stringResource(id = R.string.register),
                 fontFamily = FontFamily(Font(R.font.helvetica_bold)),
                 color = Color(0xFFFFA500),
                 fontSize = 18.sp,
@@ -227,7 +213,7 @@ fun InvestmentForm(
         if (showError) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Revise os campos inválidos",
+                text = stringResource(id = R.string.invalid),
                 color = Color.Red,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),

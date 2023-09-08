@@ -22,19 +22,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.R
-import br.com.fiap.orionidea.components.CaixaDeEntrada
-import br.com.fiap.orionidea.components.CardResultado
-import br.com.fiap.orionidea.juros.SimulateScreenViewModel
+import br.com.fiap.orionidea.components.Inbox
+import br.com.fiap.orionidea.components.CardResult
+import br.com.fiap.orionidea.components.Inbox
+import br.com.fiap.orionidea.rate.SimulateScreenViewModel
 
 @Composable
-fun SimulateInvestmentScreen(
-    jurosScreenViewModel: SimulateScreenViewModel
+fun SimulationInvestmentScreen(
+    rateScreenViewModel: SimulateScreenViewModel
 ) {
-    val value by jurosScreenViewModel.valueState.observeAsState(initial = "")
-    val rate by jurosScreenViewModel.rateState.observeAsState(initial = "")
-    val period by jurosScreenViewModel.periodState.observeAsState(initial = "")
-    val interest by jurosScreenViewModel.interestState.observeAsState(initial = 0.0)
-    val amount by jurosScreenViewModel.amountState.observeAsState(initial = 0.0)
+    val value by rateScreenViewModel.valueState.observeAsState(initial = "")
+    val rate by rateScreenViewModel.rateState.observeAsState(initial = "")
+    val period by rateScreenViewModel.periodState.observeAsState(initial = "")
+    val interest by rateScreenViewModel.interestState.observeAsState(initial = 0.0)
+    val amount by rateScreenViewModel.amountState.observeAsState(initial = 0.0)
 
     Box(
         modifier = Modifier.padding(16.dp), contentAlignment = Alignment.Center
@@ -57,37 +58,37 @@ fun SimulateInvestmentScreen(
                         text = stringResource(id = R.string.investment_data),
                         fontWeight = FontWeight.Bold
                     )
-                    CaixaDeEntrada(
+                    Inbox(
                         value = value,
                         placeholder = stringResource(id = R.string.how_much_invest),
                         label = stringResource(id = R.string.value_invest),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
-                        jurosScreenViewModel.onValueChanged(it)
+                        rateScreenViewModel.onValueChanged(it)
                     }
-                    CaixaDeEntrada(
+                    Inbox(
                         value = rate,
                         placeholder = stringResource(id = R.string.monthly_interest),
                         label = stringResource(id = R.string.monthly_interest_real),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
-                        jurosScreenViewModel.onRateChanged(it)
+                        rateScreenViewModel.onRateChanged(it)
                     }
-                    CaixaDeEntrada(
+                    Inbox(
                         value = period,
                         placeholder = stringResource(id = R.string.investment_period),
                         label = stringResource(id = R.string.investment_period_real),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
-                        jurosScreenViewModel.onPeriodChanged(it)
+                        rateScreenViewModel.onPeriodChanged(it)
                     }
                     Button(
                         onClick = {
-                            jurosScreenViewModel.calculateInvestmentInterest()
-                            jurosScreenViewModel.calculateAmountInvestment()
+                            rateScreenViewModel.calculateInvestmentInterest()
+                            rateScreenViewModel.calculateAmountInvestment()
                         }, modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 32.dp)
@@ -97,7 +98,7 @@ fun SimulateInvestmentScreen(
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-            CardResultado(juros = interest, montante = amount)
+            CardResult(juros = interest, montante = amount)
         }
     }
 }

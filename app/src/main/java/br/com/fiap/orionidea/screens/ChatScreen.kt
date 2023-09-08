@@ -113,20 +113,22 @@ fun GPTChatScreen() {
         Row(
             modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.Bottom
         ) {
-            OutlinedTextField(value = question, onValueChange = {
-                question = it
-            }, keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Send, keyboardType = KeyboardType.Text
-            ), keyboardActions = KeyboardActions(onSend = {
-                scope.launch {
-                    isLoading = true
-                    getResponse(question) { result ->
-                        response = result
-                        question = ""
-                        isLoading = false
+            OutlinedTextField(
+                value = question, onValueChange = {
+                    question = it
+                }, keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Send, keyboardType = KeyboardType.Text
+                ), keyboardActions = KeyboardActions(onSend = {
+                    scope.launch {
+                        isLoading = true
+                        getResponse(question) { result ->
+                            response = result
+                            question = ""
+                            isLoading = false
+                        }
                     }
-                }
-            }), modifier = Modifier.weight(1f))
+                }), modifier = Modifier.weight(1f)
+            )
 
             Spacer(modifier = Modifier.width(16.dp))
 

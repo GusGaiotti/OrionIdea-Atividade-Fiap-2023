@@ -63,31 +63,24 @@ fun ContactExpertScreen() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedTextField(
-                value = searchTextState,
-                onValueChange = {
-                    searchTextState = it
+            OutlinedTextField(value = searchTextState, onValueChange = {
+                searchTextState = it
+                filteredExperts = allExperts.filter { expert ->
+                    expert.name.contains(searchTextState, ignoreCase = true)
+                }
+            }, modifier = Modifier.weight(1f), label = {
+                Text(text = stringResource(id = R.string.find_expert))
+            }, trailingIcon = {
+                IconButton(onClick = {
                     filteredExperts = allExperts.filter { expert ->
                         expert.name.contains(searchTextState, ignoreCase = true)
                     }
-                },
-                modifier = Modifier.weight(1f),
-                label = {
-                    Text(text = stringResource(id = R.string.find_expert),)
-                },
-                trailingIcon = {
-                    IconButton(onClick = {
-                        filteredExperts = allExperts.filter { expert ->
-                            expert.name.contains(searchTextState, ignoreCase = true)
-                        }
-                    }) {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search"
-                        )
-                    }
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.Search, contentDescription = "Search"
+                    )
                 }
-            )
+            })
         }
 
         Spacer(modifier = Modifier.height(16.dp))

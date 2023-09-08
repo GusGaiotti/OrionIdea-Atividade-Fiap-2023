@@ -17,11 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CardResultado(juros: Double, montante: Double) {
+fun CardResult(juros: Double, montante: Double) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth(),
-        colors = CardDefaults.cardColors(
+        modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
             containerColor = Color(0xFF4CAF50)
         )
     ) {

@@ -5,24 +5,24 @@ import br.com.fiap.orionidea.dao.InvestmentDb
 import br.com.fiap.orionidea.model.Investment
 
 
-class InvestimentoRepository(context: Context) {
+class InvestimentRepository(context: Context) {
 
     private val db = InvestmentDb.getDatabase(context).investmentDao()
 
     fun save(investment: Investment): Long {
-        return db.salvar(investment)
+        return db.save(investment)
     }
 
-    fun update  (investment: Investment): Int {
-        return db.atualizar(investment)
+    fun update(investment: Investment): Int {
+        return db.update(investment)
     }
 
     fun delete(investment: Investment): Int {
-        return db.excluir(investment)
+        return db.delete(investment)
     }
 
     fun listInvestments(): List<Investment> {
-        return db.listarInvestimentos()
+        return db.listInvestiments()
     }
 
     fun sumValueApplied(): Double {

@@ -24,6 +24,8 @@
     <string name="investment_period_real">Período em meses</string>
     <string name="calculate">CALCULAR</string>
     <string name="your_balance">Seu saldo</string>
+    <string name="new_investment">Cadastro de investimentos</string>
+    <string name="register">CADASTRAR</string>
     <string name="register_investment">CADASTRAR INVESTIMENTO</string>
     <string name="extract">EXTRATO DE MOVIMENTAÇÃO</string>
     <string name="questions_bot">TIRE SUAS DÚVIDAS COM O BOT</string>
@@ -33,5 +35,17 @@
     <string name="my_investments">Meus investimentos</string>
     <string name="find_investments">Buscar Investimentos</string>
     <string name="clear_filter">Limpar Filtro</string>
+    <string name="invalid">Revise os campos inválidos</string>
+    <string name="investment_name">Nome do investimento</string>
+    <string name="investment_value">Valor do investimento</string>
+    <string name="investment_type">Tipo do investimento</string>
+    <string name="interest_rate">Taxa de juros</string>
+    <string name="daily">Resgate diário</string>
+    <string name="what_is_your_city">Qual a sua cidade?</string>
+    <string name="what_is_your_contact">Qual o seu contato?</string>
+    <string name="submit">ENVIAR PARA APROVAÇÃO</string>
+    <string name="want_to_be_expert_lc">Quero me tornar um assessor Orion...</string>
+    <string name="investment_name_sub">Digite o nome do investimento</string>
+
 
 </resources>

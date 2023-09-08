@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.components.FindInvestmentCard
-import br.com.fiap.orionidea.repository.InvestimentoRepository
+import br.com.fiap.orionidea.repository.InvestimentRepository
 import br.com.fiap.orionidea.components.TypeCard
 
 
@@ -46,7 +46,7 @@ import br.com.fiap.orionidea.components.TypeCard
 @Composable
 fun FindInvestmentScreen() {
     val context = LocalContext.current
-    val investimentRepository = InvestimentoRepository(context)
+    val investimentRepository = InvestimentRepository(context)
 
     var searchTextState by remember { mutableStateOf("") }
     val allInvestments by remember { mutableStateOf(investimentRepository.listInvestments()) }

@@ -22,24 +22,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.model.Investment
-import br.com.fiap.orionidea.repository.InvestimentoRepository
+import br.com.fiap.orionidea.repository.InvestimentRepository
 
 @Composable
 fun InvestmentCard(
-    investment: Investment,
-    atualizar: () -> Unit
+    investment: Investment, atualizar: () -> Unit
 ) {
     val context = LocalContext.current
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
+        modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
             containerColor = Color.LightGray
         )
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(16.dp)
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)
         ) {
             Column(
                 modifier = Modifier
@@ -74,13 +71,12 @@ fun InvestmentCard(
             }
             Spacer(modifier = Modifier.width(16.dp))
             IconButton(onClick = {
-                val investimentoRepository = InvestimentoRepository(context)
+                val investimentoRepository = InvestimentRepository(context)
                 investimentoRepository.delete(investment)
                 atualizar()
             }) {
                 Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = ""
+                    imageVector = Icons.Default.Delete, contentDescription = ""
                 )
             }
         }

@@ -1,22 +1,14 @@
 package br.com.fiap.orionidea.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -25,10 +17,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -40,9 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.model.Expert
-import br.com.fiap.orionidea.model.Investment
 import br.com.fiap.orionidea.repository.ExpertRepository
-import br.com.fiap.orionidea.repository.InvestimentoRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,36 +55,32 @@ fun ExpertForm(
         modifier = Modifier.padding(16.dp)
     ) {
         Text(
-            text = "Quero me tornar um assessor Orion...",
+            text = stringResource(id = R.string.want_to_be_expert_lc),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF4B0082)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = name,
+        OutlinedTextField(value = name,
             onValueChange = { onNameChange(it) },
             modifier = Modifier.fillMaxWidth(),
             label = {
                 Text(text = "Digite seu nome completo")
             },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                capitalization = KeyboardCapitalization.Words
+                keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Words
             ),
             singleLine = true
         )
         Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = city,
+        OutlinedTextField(value = city,
             onValueChange = { onCityChange(it) },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text(text = "Qual sua cidade?")
+                Text(text = stringResource(id = R.string.what_is_your_city))
             },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
+                keyboardType = KeyboardType.Number, imeAction = ImeAction.Next
             ),
             singleLine = true
         )
@@ -104,11 +90,10 @@ fun ExpertForm(
             onValueChange = { onTelephoneChange(it) },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text(text = "Qual o seu contato?")
+                Text(text = stringResource(id = R.string.what_is_your_contact))
             },
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                capitalization = KeyboardCapitalization.Words
+                keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Words
             ),
             singleLine = true
         )
@@ -119,7 +104,6 @@ fun ExpertForm(
             onClick = {
                 showError = false
 
-                // Verifique se algum campo está vazio
                 if (name.isEmpty() || city.isEmpty() || telephone.isEmpty()) {
                     showError = true
                     return@OutlinedButton
@@ -132,9 +116,7 @@ fun ExpertForm(
                     }
 
                     val expert = Expert(
-                        name = name,
-                        city = city,
-                        telephone = telephone
+                        name = name, city = city, telephone = telephone
                     )
                     expertRepository.save(expert = expert)
                     showSucces = true
@@ -148,7 +130,7 @@ fun ExpertForm(
             border = BorderStroke(1.dp, Color.Black),
         ) {
             Text(
-                text = "ENVIAR PARA APROVAÇÃO",
+                text = stringResource(id = R.string.submit),
                 fontFamily = FontFamily(Font(R.font.helvetica_bold)),
                 color = Color(0xFFCC4A0D),
                 fontSize = 18.sp,
@@ -159,7 +141,7 @@ fun ExpertForm(
         if (showError) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Revise os campos inválidos",
+                text = stringResource(id = R.string.invalid),
                 color = Color.Red,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),

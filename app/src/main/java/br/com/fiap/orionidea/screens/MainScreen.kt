@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.R
-import br.com.fiap.orionidea.repository.InvestimentoRepository
+import br.com.fiap.orionidea.repository.InvestimentRepository
 
 
 @Composable
 fun MainScreen(navController: NavHostController) {
     val context = LocalContext.current
-    val investimentRepository = InvestimentoRepository(context)
+    val investimentRepository = InvestimentRepository(context)
     val sumValue = investimentRepository.sumValueApplied()
 
     Box(

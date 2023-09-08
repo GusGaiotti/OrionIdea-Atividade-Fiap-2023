@@ -1,10 +1,10 @@
-package br.com.fiap.orionidea.juros
+package br.com.fiap.orionidea.rate
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.fiap.orionidea.calculate.calcularJuros
-import br.com.fiap.orionidea.calculate.calcularMontante
+import br.com.fiap.orionidea.calculate.calculateInterest
+import br.com.fiap.orionidea.calculate.calculateAmount
 
 class SimulateScreenViewModel: ViewModel() {
 
@@ -23,28 +23,28 @@ class SimulateScreenViewModel: ViewModel() {
     private val _amount = MutableLiveData<Double>()
     val amountState: LiveData<Double> = _amount
 
-    fun onValueChanged(novoCapital: String){
-        _value.value = novoCapital
+    fun onValueChanged(newCapital: String){
+        _value.value = newCapital
     }
 
-    fun onRateChanged(novaTaxa: String){
-        _rate.value = novaTaxa
+    fun onRateChanged(newRate: String){
+        _rate.value = newRate
     }
 
-    fun onPeriodChanged(novoTempo: String) {
-        _period.value = novoTempo
+    fun onPeriodChanged(newTime: String) {
+        _period.value = newTime
     }
 
     fun calculateInvestmentInterest(){
-        _interest.value = calcularJuros(
+        _interest.value = calculateInterest(
             capital = _value.value!!.toDouble(),
-            taxa = _rate.value!!.toDouble(),
-            tempo = _period.value!!.toDouble()
+            rate = _rate.value!!.toDouble(),
+            time = _period.value!!.toDouble()
         )
     }
 
     fun calculateAmountInvestment(){
-        _amount.value = calcularMontante(
+        _amount.value = calculateAmount(
             _value.value!!.toDouble(),
             _interest.value!!.toDouble()
         )

@@ -25,22 +25,23 @@ fun FindInvestmentCard(investimento: Investment) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth().padding(16.dp).weight(3f)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .weight(3f)
             ) {
                 Text(
-                    text = investimento.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    text = investimento.name, fontSize = 20.sp, fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = investimento.type,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
+                    text = investimento.type, fontSize = 14.sp, fontWeight = FontWeight.Normal
                 )
             }
             Text(
                 text = "R$ " + investimento.valueApplied.toString(),
-                modifier = Modifier.weight(1f).fillMaxWidth(),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF4B0082)
