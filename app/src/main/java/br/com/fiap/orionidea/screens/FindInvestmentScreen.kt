@@ -32,15 +32,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.components.FindInvestmentCard
 import br.com.fiap.orionidea.repository.InvestimentoRepository
 import br.com.fiap.orionidea.components.TypeCard
-
-
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,49 +55,45 @@ fun FindInvestmentScreen() {
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Meus investimentos",
+            text = stringResource(id = R.string.my_investments),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(16.dp)
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedTextField(
-                value = searchTextState,
+            OutlinedTextField(value = searchTextState,
                 onValueChange = {
                     searchTextState = it
-                    // Filtra a lista completa de investimentos com base no texto de pesquisa
                     filteredInvestments = allInvestments.filter { investment ->
                         investment.name.contains(searchTextState, ignoreCase = true)
                     }
                 },
                 modifier = Modifier.weight(1f),
-                label = { Text(text = "Buscar Investimento") },
+                label = { Text(stringResource(id = R.string.find_investments)) },
                 trailingIcon = {
                     IconButton(onClick = {
-                        // Filtra a lista completa de investimentos com base no texto de pesquisa
                         filteredInvestments = allInvestments.filter { investment ->
                             investment.name.contains(searchTextState, ignoreCase = true)
                         }
                     }) {
                         Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search"
+                            imageVector = Icons.Default.Search, contentDescription = "Search"
                         )
                     }
-                }
-            )
+                })
 
             Spacer(modifier = Modifier.width(16.dp))
 
             if (selectedType != null) {
                 OutlinedButton(
                     onClick = {
-                        // Redefine o estado para a lista completa
                         selectedType = null
                         filteredInvestments = allInvestments
                     },
@@ -106,7 +101,7 @@ fun FindInvestmentScreen() {
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black)
                 ) {
-                    Text(text = "LIMPAR FILTRO", fontSize = 11.sp)
+                    Text(text = stringResource(id = R.string.clear_filter), fontSize = 11.sp)
                 }
             }
         }
@@ -129,7 +124,9 @@ fun FindInvestmentScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn(
-            modifier = Modifier.weight(1f).fillMaxWidth()
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
         ) {
             items(filteredInvestments) { investimento ->
                 FindInvestmentCard(investimento = investimento)

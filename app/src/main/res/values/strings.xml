@@ -4,9 +4,29 @@
 
     <string name="login">LOGIN</string>
     <string name="name">Insira seu primeiro nome</string>
+    <string name="name_error">Nome é obrigatório!</string>
     <string name="subtitle">INSIRA AS INFORMAÇÕES</string>
     <string name="email">Insira seu E-mail</string>
     <string name="password">Insira sua senha</string>
     <string name="enter">Entrar</string>
+    <string name="interest_calculation">Cálculo de Juros Simples</string>
+    <string name="investment_data">Dados do Investimento</string>
+    <string name="how_much_invest">Quanto deseja investir?</string>
+    <string name="value_invest">Valor do investimento</string>
+    <string name="monthly_interest">Qual a taxa de juros mensal?</string>
+    <string name="monthly_interest_real">Taxa de juros mensal</string>
+    <string name="investment_period">Qual o período do investimento em meses?</string>
+    <string name="investment_period_real">Período em meses</string>
+    <string name="calculate">CALCULAR</string>
+    <string name="your_balance">Seu saldo</string>
+    <string name="register_investment">CADASTRAR INVESTIMENTO</string>
+    <string name="extract">EXTRATO DE MOVIMENTAÇÃO</string>
+    <string name="questions_bot">TIRE SUAS DÚVIDAS COM O BOT</string>
+    <string name="contact_expert">CONTATE UM ESPECIALISTA</string>
+    <string name="find_expert">Buscar Especialista</string>
+    <string name="want_to_be_expert">QUERO SER UM ASSESSOR ORION</string>
+    <string name="my_investments">Meus investimentos</string>
+    <string name="find_investments">Buscar Investimentos</string>
+    <string name="clear_filter">Limpar Filtro</string>
 
 </resources>

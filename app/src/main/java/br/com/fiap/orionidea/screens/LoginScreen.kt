@@ -55,19 +55,17 @@ fun LoginScreen(navController: NavHostController) {
         Icon(
             painter = painterResource(id = R.drawable.ic_round_icon),
             contentDescription = null,
-            modifier = Modifier
-                .size(64.dp)
+            modifier = Modifier.size(64.dp)
         )
         Text(
-            text = "Login",
+            text = stringResource(id = R.string.login),
             fontSize = 32.sp,
             color = Color(android.graphics.Color.parseColor("#6650a4"))
         )
         Text(text = stringResource(id = R.string.subtitle))
         Spacer(modifier = Modifier.height(25.dp))
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Column(
                 modifier = Modifier
@@ -83,7 +81,7 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    label = { Text(text = "Nome") },
+                    label = { Text(text = stringResource(id = R.string.name)) },
                     isError = nameError,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 )
@@ -99,7 +97,7 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    label = { Text(text = "Email") },
+                    label = { Text(text = stringResource(id = R.string.email)) },
                     isError = emailError,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 )
@@ -113,7 +111,7 @@ fun LoginScreen(navController: NavHostController) {
                         if (password.isNotEmpty()) passwordError = false
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(text = "Senha") },
+                    label = { Text(text = stringResource(id = R.string.password)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     isError = passwordError,
                     visualTransformation = PasswordVisualTransformation(),
@@ -149,7 +147,7 @@ fun LoginScreen(navController: NavHostController) {
             )
         ) {
             Text(
-                text = "Entrar",
+                text = stringResource(id = R.string.enter),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 22.sp,
                 textAlign = TextAlign.Center

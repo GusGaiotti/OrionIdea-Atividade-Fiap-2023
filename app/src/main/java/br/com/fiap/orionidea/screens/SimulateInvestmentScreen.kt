@@ -15,11 +15,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.components.CaixaDeEntrada
 import br.com.fiap.orionidea.components.CardResultado
 import br.com.fiap.orionidea.juros.SimulateScreenViewModel
@@ -35,12 +37,11 @@ fun SimulateInvestmentScreen(
     val amount by jurosScreenViewModel.amountState.observeAsState(initial = 0.0)
 
     Box(
-        modifier = Modifier.padding(16.dp),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.padding(16.dp), contentAlignment = Alignment.Center
     ) {
         Column {
             Text(
-                text = "Cálculo de Juros Simples",
+                text = stringResource(id = R.string.interest_calculation),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 20.sp,
                 color = Color.Red,
@@ -53,13 +54,13 @@ fun SimulateInvestmentScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "Dados do Investimento",
+                        text = stringResource(id = R.string.investment_data),
                         fontWeight = FontWeight.Bold
                     )
                     CaixaDeEntrada(
                         value = value,
-                        placeholder = "Quanto deseja investir",
-                        label = "Valor do investimento",
+                        placeholder = stringResource(id = R.string.how_much_invest),
+                        label = stringResource(id = R.string.value_invest),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
@@ -67,8 +68,8 @@ fun SimulateInvestmentScreen(
                     }
                     CaixaDeEntrada(
                         value = rate,
-                        placeholder = "Qual a taxa de juros mensal?",
-                        label = "Taxa de juros mensal",
+                        placeholder = stringResource(id = R.string.monthly_interest),
+                        label = stringResource(id = R.string.monthly_interest_real),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
@@ -76,8 +77,8 @@ fun SimulateInvestmentScreen(
                     }
                     CaixaDeEntrada(
                         value = period,
-                        placeholder = "Qual o período do investimento em meses?",
-                        label = "Período em meses",
+                        placeholder = stringResource(id = R.string.investment_period),
+                        label = stringResource(id = R.string.investment_period_real),
                         modifier = Modifier,
                         keyboardType = KeyboardType.Decimal
                     ) {
@@ -87,12 +88,11 @@ fun SimulateInvestmentScreen(
                         onClick = {
                             jurosScreenViewModel.calculateInvestmentInterest()
                             jurosScreenViewModel.calculateAmountInvestment()
-                        },
-                        modifier = Modifier
+                        }, modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 32.dp)
                     ) {
-                        Text(text = "CALCULAR")
+                        Text(text = stringResource(id = R.string.calculate))
                     }
                 }
             }

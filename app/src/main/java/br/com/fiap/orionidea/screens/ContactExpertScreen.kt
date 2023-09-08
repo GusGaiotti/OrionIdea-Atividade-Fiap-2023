@@ -27,9 +27,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.components.ExpertCard
 import br.com.fiap.orionidea.components.TypeExpertCard
 import br.com.fiap.orionidea.repository.ExpertRepository
@@ -47,7 +49,7 @@ fun ContactExpertScreen() {
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Contate um especialista",
+            text = stringResource(id = R.string.contact_expert),
             fontSize = 24.sp,
             color = Color(0xFFCC4A0D),
             fontWeight = FontWeight.Bold,
@@ -71,7 +73,7 @@ fun ContactExpertScreen() {
                 },
                 modifier = Modifier.weight(1f),
                 label = {
-                    Text(text = "Buscar Especialista")
+                    Text(text = stringResource(id = R.string.find_expert),)
                 },
                 trailingIcon = {
                     IconButton(onClick = {

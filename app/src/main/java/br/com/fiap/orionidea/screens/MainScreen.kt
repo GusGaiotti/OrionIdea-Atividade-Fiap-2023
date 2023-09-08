@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -25,8 +26,7 @@ fun MainScreen(navController: NavHostController) {
     val sumValue = investimentRepository.sumValueApplied()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         Column(
             modifier = Modifier
@@ -52,7 +52,7 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Seu saldo",
+                        text = stringResource(id = R.string.your_balance),
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 23.sp,
                     )
@@ -73,10 +73,9 @@ fun MainScreen(navController: NavHostController) {
                     .padding(vertical = 5.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OutlinedButton(
-                    onClick = {
-                        navController.navigate("add_investment_screen")
-                    },
+                OutlinedButton(onClick = {
+                    navController.navigate("add_investment_screen")
+                },
                     modifier = Modifier
                         .height(50.dp)
                         .fillMaxWidth(),
@@ -84,20 +83,18 @@ fun MainScreen(navController: NavHostController) {
                     border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
-                            text = "CADASTRAR INVESTIMENTO",
+                            text = stringResource(id = R.string.register_investment),
                             fontFamily = FontFamily(Font(R.font.free_sans)),
                             color = Color(0xFF1B4CC5),
                             fontSize = 22.sp,
                         )
-                    }
-                )
+                    })
 
                 Spacer(modifier = Modifier.height(15.dp))
 
-                OutlinedButton(
-                    onClick = {
-                        navController.navigate("find_investment_screen")
-                    },
+                OutlinedButton(onClick = {
+                    navController.navigate("find_investment_screen")
+                },
                     modifier = Modifier
                         .height(50.dp)
                         .fillMaxWidth(),
@@ -105,21 +102,19 @@ fun MainScreen(navController: NavHostController) {
                     border = BorderStroke(1.dp, Color.Black),
                     content = {
                         Text(
-                            text = "EXTRATO DE MOVIMENTAÇÃO",
+                            text = stringResource(id = R.string.extract),
                             fontFamily = FontFamily(Font(R.font.free_sans)),
                             color = Color(0xFF008000),
                             fontSize = 22.sp,
                         )
-                    }
-                )
+                    })
             }
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            OutlinedButton(
-                onClick = {
-                    navController.navigate("chat_screen")
-                },
+            OutlinedButton(onClick = {
+                navController.navigate("chat_screen")
+            },
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth(),
@@ -127,19 +122,17 @@ fun MainScreen(navController: NavHostController) {
                 border = BorderStroke(1.dp, Color.Black),
                 content = {
                     Text(
-                        text = "TIRE SUAS DÚVIDAS COM O BOT",
+                        text = stringResource(id = R.string.questions_bot),
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         fontSize = 20.sp,
                     )
-                }
-            )
+                })
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            OutlinedButton(
-                onClick = {
-                    navController.navigate("contact_expert_screen")
-                },
+            OutlinedButton(onClick = {
+                navController.navigate("contact_expert_screen")
+            },
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth(),
@@ -147,20 +140,18 @@ fun MainScreen(navController: NavHostController) {
                 border = BorderStroke(1.dp, Color.Black),
                 content = {
                     Text(
-                        text = "CONTATE UM ASSESSOR",
+                        text = stringResource(id = R.string.contact_expert),
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         color = Color(0xFF8B0000),
                         fontSize = 22.sp,
                     )
-                }
-            )
+                })
 
             Spacer(modifier = Modifier.height(60.dp))
 
-            OutlinedButton(
-                onClick = {
-                    navController.navigate("add_expert_screen")
-                },
+            OutlinedButton(onClick = {
+                navController.navigate("add_expert_screen")
+            },
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth(),
@@ -168,13 +159,12 @@ fun MainScreen(navController: NavHostController) {
                 border = BorderStroke(1.dp, Color.Black),
                 content = {
                     Text(
-                        text = "QUERO SER UM ASSESSOR ORION",
+                        text = stringResource(id = R.string.want_to_be_expert),
                         fontFamily = FontFamily(Font(R.font.free_sans)),
                         color = Color(0xFFCF461A),
                         fontSize = 19.sp,
                     )
-                }
-            )
+                })
         }
     }
 }
