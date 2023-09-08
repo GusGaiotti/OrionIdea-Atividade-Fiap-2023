@@ -15,8 +15,7 @@ fun ErrorText(showError: Boolean, errorMessage: String) {
         Text(
             text = errorMessage,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+                .fillMaxWidth(),
             color = Color.Red,
             textAlign = TextAlign.End
         )

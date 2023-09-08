@@ -2,7 +2,7 @@
     <string name="app_name">Login Prof</string>
 
 
-    <string name="login">LOGIN</string>
+    <string name="login">Login</string>
     <string name="name">Insira seu primeiro nome</string>
     <string name="name_error">Nome é obrigatório!</string>
     <string name="subtitle">INSIRA AS INFORMAÇÕES</string>
