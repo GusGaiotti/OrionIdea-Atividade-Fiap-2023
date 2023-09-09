@@ -1,19 +1,15 @@
 package br.com.fiap.orionidea.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -34,7 +30,6 @@ import androidx.navigation.NavHostController
 import br.com.fiap.orionidea.R
 import br.com.fiap.orionidea.repository.InvestimentRepository
 
-
 @Composable
 fun MainScreen(navController: NavHostController) {
     val context = LocalContext.current
@@ -51,7 +46,7 @@ fun MainScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .scale(2f, 1f)
                 .graphicsLayer(rotationX = 180f)
-                .offset(y = -125.dp)
+                .offset(y = (-125).dp)
         )
         Column(
             modifier = Modifier
@@ -59,7 +54,7 @@ fun MainScreen(navController: NavHostController) {
                 .padding(15.dp)
         ) {
             Text(
-                text = "Olá nome, comece a investir!",
+                text = "Olá, comece a investir!",
                 color = Color(0xFF4938C3),
                 fontSize = 23.sp,
                 fontFamily = FontFamily(Font(R.font.helvetica_bold)),
@@ -180,9 +175,9 @@ fun MainScreen(navController: NavHostController) {
                     )
             ) {
                 Button(onClick = {
-                    navController.navigate("news_screen")
+                    Toast.makeText(context, "Em desenvolvimento", Toast.LENGTH_SHORT).show()
                 },
-                    modifier = Modifier.fillMaxSize(), // Changed from fillMaxWidth() to fillMaxSize() for full Box coverage
+                    modifier = Modifier.fillMaxSize(),
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(1.dp, Color.Black),
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
@@ -202,9 +197,8 @@ fun MainScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(85.dp))
 
-
             Button(onClick = {
-                navController.navigate("simulate_investment_screen")
+                Toast.makeText(context, "Em desenvolvimento", Toast.LENGTH_SHORT).show()
             },
                 modifier = Modifier
                     .height(50.dp)
@@ -266,7 +260,7 @@ fun MainScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(15.dp))
 
             Button(onClick = {
-                navController.navigate("contact_expert_screen")
+                Toast.makeText(context, "Em desenvolvimento", Toast.LENGTH_SHORT).show()
             },
                 modifier = Modifier
                     .height(50.dp)
@@ -297,7 +291,7 @@ fun MainScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(95.dp))
 
             Button(onClick = {
-                navController.navigate("add_expert_screen")
+                Toast.makeText(context, "Em desenvolvimento", Toast.LENGTH_SHORT).show()
             },
                 modifier = Modifier
                     .height(50.dp)

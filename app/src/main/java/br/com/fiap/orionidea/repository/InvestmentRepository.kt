@@ -29,4 +29,3 @@ class InvestimentRepository(context: Context) {
         return db.sumValueApplied()
     }
 }
-
