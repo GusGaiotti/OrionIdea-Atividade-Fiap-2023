@@ -9,10 +9,13 @@ Telas:
 (Alguma estão em desenvolvimento)
 
 
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/03ea375a-b047-482e-810c-a4c36346f2b0" alt="Screenshot" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/ea1b97b1-5e01-4b7e-97b0-11bd07503d51" alt="Menu" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/669d80c0-61bc-4e65-8b90-8afa7b14d83c" alt="Bot" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/65bb88f1-60eb-4a90-84d9-df5714bfefb8" alt="Cadastrar" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/0df2db49-6db3-439b-a371-be571bcfc298" alt="Especialista" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/994f8a80-5c20-4f79-8019-6e9de864ed3f" alt="Extrato" width="300">
-<img src="https://github.com/GusGaiotti/faculdade-privado/assets/104476558/197ddff3-a15d-4896-95a3-2b1eb74be92b" alt="Notícias" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/a99875c8-2cd6-4fd0-b09f-2486400203c4" alt="Screenshot" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/0a794c5a-fe74-4704-a795-f40a12a1c82c" alt="Menu" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/0ad1a973-5849-46d7-842b-01bab628785d" alt="Últimas Notícias" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/cf285182-26c6-4909-a999-ab5329ea2af9" alt="Extrato" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/87e94cf1-77e1-4e65-a907-0eb861c86abb" alt="Especialista" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/f85b6a53-20a6-4458-8500-f9cf07492284" alt="Cadastrar" width="300">
+<img src="https://github.com/GusGaiotti/OrionIdea-Atividade-Fiap-2023/assets/104476558/50da4b56-5d32-4905-a04a-dcfc7bf550a9" alt="Bot" width="300">
+
+
+
